@@ -1,12 +1,8 @@
 import { AGREGAR_GASTO, ELIMINAR_GASTO, MODIFICAR_GASTO } from "../actions/types/gastos";
-import cloneDeep from 'lodash/cloneDeep';
 
 const INITIAL_STATE = {
-    total: 100,
-    lista: [{
-        id: 0,
-        gasto: 100,
-    }],
+    total: 0,
+    lista: [],
 };
 
 export default function (state, action) {

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import miPrimerReductor from './miPrimerReductor';
 import ingresosReductor from './ingresosReductor';
 import gastosReductor from './gastosReductor';
+import { RESET } from '../actions/types/general';
 
 const reducers = {
     reductor: miPrimerReductor,
@@ -9,4 +10,9 @@ const reducers = {
     gastos: gastosReductor,
 };
 
-export default combineReducers(reducers);
+export default function (state, action) {
+    if (action.type === RESET) {
+        return combineReducers(reducers)(undefined, action);
+    }
+    return combineReducers(reducers)(state, action);
+};

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Notificacion from './notificacion';
 import { modificarIngresos } from './actions/ingresos';
+import { reset } from './actions/general';
 import Gastos from './gastos';
 
 class Content extends React.Component {
@@ -31,9 +32,11 @@ class Content extends React.Component {
         return <div>
             Ingresos: <input value={ingresos} onChange={this.modificarIngresos} />
             <button onClick={this.cambiarIngresos}>Submit</button>
+            <button onClick={this.props.reset}>Reiniciar</button>
             <div className='summary'>
                 <div>Ingresos guardados: {ingresosRedux}</div>
                 <div>Gastos realizados: {gastos}</div>
+                <div>Flujo: {ingresosRedux - gastos}</div>
             </div>
             <Gastos />
             <Notificacion />
@@ -50,6 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     modificarIngresos,
+    reset,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

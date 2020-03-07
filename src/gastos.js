@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { agregarGasto, eliminarGasto, modificarGasto } from './actions/gastos';
+import { agregarGasto } from './actions/gastos';
+import GastosItem from './gastosItem';
 
 import './App.css';
 
 function Gastos() {
     const [gasto, setGasto] = useState(0); 
-    const [modificar, setModificar] = useState(0); 
-    const [gastoAEditar, setGastoAEditar] = useState(null);
     const dispatch = useDispatch();
     const listaGastos = useSelector(state => state.gastos.lista);
 
@@ -25,34 +24,7 @@ function Gastos() {
         </div>
         <div className='listado'>
             {listaGastos.map(gasto => {
-                const editando = gastoAEditar === gasto.id;
-
-                if (editando) {
-                    return <div key={gasto.id} className='gasto'>
-                        <input value={modificar} onChange={(evt) => {
-                            const newValue = evt.currentTarget.value;
-                            setModificar(newValue);
-                        }} />
-                        <button onClick={() => {
-                            setGastoAEditar(null);
-                            setModificar(0);
-                        }}>Cancelar</button>
-                        <button onClick={() => {
-                            dispatch(modificarGasto(gasto.id, modificar))
-                            setModificar(0);
-                            setGastoAEditar(null);
-                        }}>Modificar</button>
-                    </div>;
-                }
-                return <div key={gasto.id} className='gasto'>
-                    {gasto.gasto}
-                    <button onClick={() => {
-                        setGastoAEditar(gasto.id);
-                    }}>Editar</button>
-                    <button onClick={() => {
-                        dispatch(eliminarGasto(gasto.id))
-                    }}>Eliminar</button>
-                </div>;
+                return <GastosItem gasto={gasto} />
             })}
         </div>
     </div>;
