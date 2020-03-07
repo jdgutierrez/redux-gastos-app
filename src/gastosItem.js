@@ -5,6 +5,7 @@ import {
     agregarGasto,
     modificarGasto,
 } from './actions/gastos';
+import { mostrarNotificacion } from './actions/notificaciones';
 
 class GastosItem extends Component {
     constructor(props) {
@@ -36,6 +37,7 @@ class GastosItem extends Component {
                 }}>Cancelar</button>
                 <button onClick={() => {
                     this.props.modificarGasto(gasto.id, modificar)
+                    this.props.mostrarNotificacion('Gasto modificado');
                     this.setState({
                         modificar: 0,
                         gastoAEditar: null,
@@ -51,7 +53,8 @@ class GastosItem extends Component {
                 });
             }}>Editar</button>
             <button onClick={() => {
-                this.props.eliminarGasto(gasto.id)
+                this.props.eliminarGasto(gasto.id);
+                this.props.mostrarNotificacion('Gasto eliminado');
             }}>Eliminar</button>
         </div>;
     }
@@ -67,6 +70,7 @@ const mapDispatchToProps = {
     eliminarGasto,
     agregarGasto,
     modificarGasto,
+    mostrarNotificacion,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GastosItem);

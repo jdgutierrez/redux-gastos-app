@@ -2,6 +2,7 @@ import * as ActionTypes from '../actions/types/notificaciones';
 
 const INITIAL_STATE = {
     mostrarNotificacion: false,
+    mensaje: '',
 };
 
 export default function (state, action) {
@@ -18,6 +19,7 @@ export default function (state, action) {
             return {
                 ...state,
                 mostrarNotificacion: true,
+                mensaje: action.payload.mensaje,
             };
         case ActionTypes.ESCONDER_NOTIFICACION: 
             return {

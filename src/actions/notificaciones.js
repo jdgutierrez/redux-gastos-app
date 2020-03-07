@@ -1,8 +1,11 @@
 import * as ActionTypes from './types/notificaciones';
 
-export const mostrarNotificacion = () => {
+export const mostrarNotificacion = (mensaje) => {
     return {
         type: ActionTypes.MOSTRAR_NOTIFICACION,
+        payload: {
+            mensaje,
+        },
     };
 };
 

@@ -5,6 +5,7 @@ import GastosItem from './gastosItem';
 
 import './App.css';
 
+
 function Gastos() {
     const [gasto, setGasto] = useState(0); 
     const dispatch = useDispatch();

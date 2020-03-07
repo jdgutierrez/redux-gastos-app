@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Notificacion from './notificacion';
 import { modificarIngresos } from './actions/ingresos';
+import { mostrarNotificacion } from './actions/notificaciones';
 import { reset } from './actions/general';
 import Gastos from './gastos';
 
@@ -24,6 +25,7 @@ class Content extends React.Component {
 
     cambiarIngresos() {
         this.props.modificarIngresos(this.state.ingresos);
+        this.props.mostrarNotificacion('Ingreso agregado');
     }
 
     render() {
@@ -54,6 +56,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     modificarIngresos,
     reset,
+    mostrarNotificacion,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
