@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.summary {
+  margin: 10px 0;
+}
+
+.gastos {
+  margin: 10px 0;
+}
+
+.gastos .listado {
+  margin: 5px 0;
+}
+
+.gastos .listado .gasto {
+  padding: 10px 5px;
+}
+
+.gastos .listado .gasto:nth-child(even) {
+  background: grey;
+}

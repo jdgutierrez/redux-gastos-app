@@ -2,14 +2,40 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Notificacion from './notificacion';
 import { modificarIngresos } from './actions/ingresos';
+import Gastos from './gastos';
+
 class Content extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            ingresos: 0,
+        };
+        this.modificarIngresos = this.modificarIngresos.bind(this);
+        this.cambiarIngresos = this.cambiarIngresos.bind(this);
+    }
+
+    modificarIngresos(evt) {
+        const newValue = evt.currentTarget.value;
+        this.setState({
+            ingresos: newValue,
+        })
+    }    
+
+    cambiarIngresos() {
+        this.props.modificarIngresos(this.state.ingresos);
+    }
+
     render() {
-        const { ingresos, modificarIngresos } = this.props;
+        const { ingresos } = this.state;
+        const { ingresosRedux, gastos } = this.props;
         return <div>
-            Ingresos: <input value={ingresos} onChange={(evt) => {
-                const newValue = evt.currentTarget.value;
-                modificarIngresos(newValue);
-            }} />
+            Ingresos: <input value={ingresos} onChange={this.modificarIngresos} />
+            <button onClick={this.cambiarIngresos}>Submit</button>
+            <div className='summary'>
+                <div>Ingresos guardados: {ingresosRedux}</div>
+                <div>Gastos realizados: {gastos}</div>
+            </div>
+            <Gastos />
             <Notificacion />
         </div>;
     }
@@ -17,7 +43,8 @@ class Content extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        ingresos: state.ingresos.ingresos,
+        ingresosRedux: state.ingresos.ingresos,
+        gastos: state.gastos.total,
     };
 };
 
