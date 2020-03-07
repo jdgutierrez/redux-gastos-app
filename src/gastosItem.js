@@ -20,9 +20,10 @@ class GastosItem extends Component {
         const { modificar, gastoAEditar } = this.state;
         const { gasto } = this.props;
         const editando = gastoAEditar === gasto.id;
+        console.log('Renderizando gasto', gasto.id);
 
         if (editando) {
-            return <div key={gasto.id} className='gasto'>
+            return <div className='gasto'>
                 <input value={modificar} onChange={(evt) => {
                     const newValue = evt.currentTarget.value;
                     this.setState({
@@ -45,7 +46,7 @@ class GastosItem extends Component {
                 }}>Modificar</button>
             </div>;
         }
-        return <div key={gasto.id} className='gasto'>
+        return <div className='gasto'>
             {gasto.gasto}
             <button onClick={() => {
                 this.setState({

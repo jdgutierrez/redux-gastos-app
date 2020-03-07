@@ -5,6 +5,7 @@ import { modificarIngresos } from './actions/ingresos';
 import { mostrarNotificacion } from './actions/notificaciones';
 import { reset } from './actions/general';
 import Gastos from './gastos';
+import { persistor } from './store';
 
 class Content extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class Content extends React.Component {
         const newValue = evt.currentTarget.value;
         this.setState({
             ingresos: newValue,
-        })
+        });
     }    
 
     cambiarIngresos() {
@@ -35,6 +36,9 @@ class Content extends React.Component {
             Ingresos: <input value={ingresos} onChange={this.modificarIngresos} />
             <button onClick={this.cambiarIngresos}>Submit</button>
             <button onClick={this.props.reset}>Reiniciar</button>
+            <button onClick={() => {
+                persistor.purge();
+            }}>Reiniciar Persist</button>
             <div className='summary'>
                 <div>Ingresos guardados: {ingresosRedux}</div>
                 <div>Gastos realizados: {gastos}</div>

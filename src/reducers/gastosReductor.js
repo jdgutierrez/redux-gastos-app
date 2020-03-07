@@ -3,6 +3,7 @@ import { AGREGAR_GASTO, ELIMINAR_GASTO, MODIFICAR_GASTO } from "../actions/types
 const INITIAL_STATE = {
     total: 0,
     lista: [],
+    gasto: 0,
 };
 
 export default function (state, action) {
