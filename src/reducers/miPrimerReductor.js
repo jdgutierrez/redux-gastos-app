@@ -1,7 +1,7 @@
 import * as ActionTypes from '../actions/types/notificaciones';
 
 const INITIAL_STATE = {
-    mostrarNotification: false,
+    mostrarNotificacion: false,
 };
 
 export default function (state, action) {
@@ -17,12 +17,13 @@ export default function (state, action) {
         case ActionTypes.MOSTRAR_NOTIFICACION:
             return {
                 ...state,
-                mostrarNotification: true,
+                mostrarNotificacion: true,
             };
         case ActionTypes.ESCONDER_NOTIFICACION: 
             return {
                 ...state,
-                mostrarNotification: false,
+                mostrarNotificacion: false,
+                mensaje: 'No tienes ningún mensaje en el store de redux',
             };
         default:
             return state;
